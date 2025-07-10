@@ -4,7 +4,7 @@
     "build": "next build",
     "dev": "next dev --turbopack",
     "start": "next start",
-    "lint": "next lint"
+    "lint-manually-run": "next lint"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
