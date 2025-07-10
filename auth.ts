@@ -8,10 +8,10 @@ import { User } from './app/lib/definitions';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
-async function getUser(email: string): Promise<User | undefined> {
+async function getUser(name: string): Promise<User | undefined> {
     try {
         const user = await sql<User[]>`
-            SELECT * FROM users WHERE email=${email}
+            SELECT * FROM users WHERE name=${name}
         `;
         return user[0];
     } catch (error) {
@@ -27,23 +27,25 @@ export const { auth, signIn, signOut } = NextAuth({
             async authorize(credentials) {
                 const parsedCredentials = z
                     .object({
-                        email: z.string().email(),
+                        name: z.string(),
                         password: z.string().min(6),
                     })
                     .safeParse(credentials);
 
-                if (parsedCredentials.success) {
-                    const { email, password } = parsedCredentials.data;
-                    const user = await getUser(email);
-                    if (!user) return null;
-                    const passwordsMatch = await bcrypt.compare(
-                        password,
-                        user.password
-                    );
-                    if (passwordsMatch) return user;
-                }
-                console.log('Invalid credentials');
-                return null;
+                return {};
+
+                // if (parsedCredentials.success) {
+                //     const { name, password } = parsedCredentials.data;
+                //     const user = await getUser(name);
+                //     if (!user) return null;
+                //     const passwordsMatch = await bcrypt.compare(
+                //         password,
+                //         user.password
+                //     );
+                //     if (passwordsMatch) return user;
+                // }
+                // console.log('Invalid credentials');
+                // return null;
             },
         }),
     ],

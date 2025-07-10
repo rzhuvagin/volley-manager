@@ -1,6 +1,9 @@
 import '@/app/ui/global.css';
 import { Metadata } from 'next';
-import { inter } from './ui/fonts';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { ThemeProvider } from '@mui/material/styles';
+import { roboto } from '@/app/ui/fonts';
+import theme from '@/app/theme';
 
 export const metadata: Metadata = {
     title: {
@@ -19,7 +22,11 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={`${inter.className} antialiased`}>{children}</body>
+            <body className={`${roboto.className} antialiased`}>
+                <AppRouterCacheProvider>
+                    <ThemeProvider theme={theme}>{children}</ThemeProvider>
+                </AppRouterCacheProvider>
+            </body>
         </html>
     );
 }
