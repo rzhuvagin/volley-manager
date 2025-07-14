@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -12,9 +14,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import AddLinkIcon from '@mui/icons-material/AddLink';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 
-import { Player } from '@/app/lib/players.model';
+import { Player } from '@/app/lib/players/players.model';
 import GenderAvatar from './gender-avatar';
 import PlayerStatusChip from './player-status-chip';
+import { TG_LINK } from '@/app/lib/constants';
 
 interface PlayerCardProps {
     player: Player;
@@ -54,7 +57,7 @@ export default async function PlayerCard({
                 {!!player.tg && (
                     <Button
                         size="small"
-                        href={`https://t.me/${player.tg}`}
+                        href={`${TG_LINK}${player.tg}`}
                         target="_blank"
                     >
                         <TelegramIcon />
@@ -62,6 +65,7 @@ export default async function PlayerCard({
                 )}
                 <Box sx={{ flexGrow: 1 }} />
                 <Button
+                    LinkComponent={Link}
                     size="small"
                     href={`/dashboard/players/${player.id}/edit`}
                 >

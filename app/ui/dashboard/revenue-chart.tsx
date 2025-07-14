@@ -10,18 +10,18 @@ import { lusitana } from '@/app/ui/fonts';
 // https://airbnb.io/visx/
 
 export default async function RevenueChart() {
-  const revenue = await fetchRevenue();
-  const chartHeight = 350;
+  // const revenue = await fetchRevenue();
+  // const chartHeight = 350;
 
-  const { yAxisLabels, topLabel } = generateYAxis(revenue);
+  // const { yAxisLabels, topLabel } = generateYAxis(revenue);
 
-  if (!revenue || revenue.length === 0) {
-    return <p className="mt-4 text-gray-400">No data available.</p>;
-  }
+  // if (!revenue || revenue.length === 0) {
+  //   return <p className="mt-4 text-gray-400">No data available.</p>;
+  // }
 
   return (
     <div className="w-full md:col-span-4">
-      <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
+      {/* <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
         Recent Revenue
       </h2>
       <div className="rounded-xl bg-gray-50 p-4">
@@ -53,7 +53,7 @@ export default async function RevenueChart() {
           <CalendarIcon className="h-5 w-5 text-gray-500" />
           <h3 className="ml-2 text-sm text-gray-500 ">Last 12 months</h3>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

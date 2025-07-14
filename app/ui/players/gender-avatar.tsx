@@ -4,8 +4,8 @@ import { blue, grey, pink } from '@mui/material/colors';
 import MaleIcon from '@mui/icons-material/Male';
 import FemaleIcon from '@mui/icons-material/Female';
 
-import { Gender } from '@/app/lib/players.model';
-import { percentToColor } from '@/app/lib/players.utils';
+import { Gender } from '@/app/lib/players/players.model';
+import { percentToColor } from '@/app/lib/players/players.utils';
 
 interface GenderAvatarProps {
     gender: Gender;

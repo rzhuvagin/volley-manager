@@ -1,9 +1,21 @@
-export default function Page() {
+import { Suspense } from 'react';
+import { notFound } from 'next/navigation';
+
+import { fetchPlayers } from '@/app/lib/players/players.data';
+import EditPlayer from '@/app/ui/players/edit-player';
+
+export default async function Page(props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
+    const id = params.id;
+    const players = await fetchPlayers();
+    const selectedPlayer = players.find((player) => player.id === id);
+    if (!selectedPlayer) {
+        return notFound();
+    }
+
     return (
-        <main>
-            <h1 className="mb-4 text-xl md:text-2xl">Редактирование игрока</h1>
-            <p>Здесь будет форма редактирования игрока.</p>
-            {/* Здесь можно добавить форму редактирования игрока */}
-        </main>
+        <Suspense>
+            <EditPlayer players={players} selectedPlayer={selectedPlayer} />
+        </Suspense>
     );
 }

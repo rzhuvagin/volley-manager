@@ -1,4 +1,4 @@
-import { fetchPlayers } from '@/app/lib/players.data';
+import { fetchPlayers } from '@/app/lib/players/players.data';
 
 export default async function GameList() {
     const players = await fetchPlayers();

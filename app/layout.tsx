@@ -7,8 +7,8 @@ import theme from '@/app/theme';
 
 export const metadata: Metadata = {
     title: {
-        template: '%s | Acme Dashboard',
-        default: 'Acme Dashboard',
+        template: '%s | Volley manager',
+        default: 'Volley manager',
     },
     description:
         'The official Next.js Course Dashboard, built with App Router.',
