@@ -4,12 +4,12 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { pink, blue } from '@mui/material/colors';
 import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 import MaleIcon from '@mui/icons-material/Male';
 import FemaleIcon from '@mui/icons-material/Female';
 
 import { Gender } from '@/app/lib/players/players.model';
-import FormControlLabel from '@mui/material/FormControlLabel';
 
 const StyledGenderSwitch = styled(Switch)(() => ({
     width: 62,
@@ -47,11 +47,11 @@ interface GenderSwitchProps {
 }
 
 export default function GenderSwitch({ value, setValue }: GenderSwitchProps) {
-    console.debug(value);
     return (
         <FormControlLabel
             label="Пол"
             labelPlacement="start"
+            sx={{ ml: 1 }}
             control={
                 <Box position="relative" marginLeft={1} width={62} height={34}>
                     <StyledGenderSwitch

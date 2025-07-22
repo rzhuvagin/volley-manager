@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link';
 
 import Toolbar from '@mui/material/Toolbar';
@@ -12,10 +14,10 @@ import AddIcon from '@mui/icons-material/Add';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
-export default async function PlayerToolbar({
-    totalPlayers,
+export default function GamesToolbar({
+    totalGames,
 }: {
-    totalPlayers: number;
+    totalGames: number;
 }) {
     return (
         <Paper sx={{ mb: 2, bgcolor: blue[50] }}>
@@ -31,10 +33,10 @@ export default async function PlayerToolbar({
                         component="div"
                         sx={{ flexGrow: 1 }}
                     >
-                        Игроки
+                        Игры
                     </Typography>
                     <Typography variant="subtitle1" component="div">
-                        Всего: {totalPlayers}
+                        Всего: {totalGames}
                     </Typography>
                     <Tooltip title="Сортировать">
                         <IconButton sx={{ color: blue[900] }}>
@@ -46,10 +48,10 @@ export default async function PlayerToolbar({
                             <FilterAltIcon />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Добавить игрока">
+                    <Tooltip title="Добавить игру">
                         <IconButton
                             sx={{ color: blue[900] }}
-                            href="/dashboard/players/add"
+                            href="/dashboard/games/add"
                             LinkComponent={Link}
                         >
                             <AddIcon />

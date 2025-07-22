@@ -1,19 +1,19 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import AcmeLogo from '@/app/ui/acme-logo';
-import { PowerIcon } from '@heroicons/react/24/outline';
-import { signOut } from '@/auth';
+import { usePathname } from 'next/navigation';
+
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import { grey } from '@mui/material/colors';
+
 import { useIsMobile } from '@/app/hooks/use-is-mobile.hook';
-import { links } from '@/app/dashboard/nav-links';
+import { links } from '@/app/(pages)/dashboard/nav-links';
 
 interface SideNavProps {
     isMenuShown: boolean;
@@ -22,6 +22,7 @@ interface SideNavProps {
 
 export default function SideNav({ isMenuShown, setIsMenuShown }: SideNavProps) {
     const isMobile = useIsMobile();
+    const pathname = usePathname();
 
     const closeMenu = () => {
         if (isMobile) {
@@ -44,9 +45,24 @@ export default function SideNav({ isMenuShown, setIsMenuShown }: SideNavProps) {
             >
                 <List>
                     {links.map((link) => (
-                        <Link href={link.href} key={link.name}>
+                        <Link
+                            href={link.href}
+                            key={link.name}
+                            style={{
+                                textDecorationLine: 'none',
+                                color: 'inherit',
+                            }}
+                        >
                             <ListItem disablePadding>
-                                <ListItemButton onClick={closeMenu}>
+                                <ListItemButton
+                                    onClick={closeMenu}
+                                    sx={{
+                                        bgcolor:
+                                            pathname === link.href
+                                                ? grey[100]
+                                                : 'none',
+                                    }}
+                                >
                                     <ListItemIcon>{link.icon}</ListItemIcon>
                                     <ListItemText primary={link.name} />
                                 </ListItemButton>

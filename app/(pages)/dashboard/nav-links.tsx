@@ -17,5 +17,5 @@ export const links: LinkItem[] = [
         href: '/dashboard/players',
         icon: <GroupsIcon />,
     },
-    { name: 'Игры', href: '/dashboard/customers', icon: <CalendarMonthIcon /> },
+    { name: 'Игры', href: '/dashboard/games', icon: <CalendarMonthIcon /> },
 ];

@@ -1,4 +1,5 @@
 export function percentToColor(value: number): string {
+    if (value === null) return '#AAAAAA';
     // Ограничиваем значение в диапазоне 0-100
     const clampedValue = Math.max(0, Math.min(100, value));
 

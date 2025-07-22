@@ -13,7 +13,9 @@ type Emptily<T> = {
     [K in keyof T]: T[K] | '';
 };
 
-export type PlayerFormModel = Emptily<Omit<Player, 'id'>>;
+export type PlayerFormModel = Emptily<Omit<Player, 'id'>> & {
+    useSkill: boolean;
+};
 
 export const GENDERS = ['male', 'female'] as const;
 export type Gender = (typeof GENDERS)[number];

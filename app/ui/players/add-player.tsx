@@ -1,18 +1,18 @@
 'use client';
 
+import { useActionState } from 'react';
 import { useForm } from 'react-hook-form';
+
 import PlayerForm from './player-form';
 import { Player, PlayerFormModel } from '@/app/lib/players/players.model';
+import { createPlayer, PlayerFormState } from '@/app/lib/players/players.action';
 
 export default function AddPlayer({ players }: { players: Player[] }) {
     const {
-        register,
+        control,
         watch,
-        setValue,
         formState: { errors },
-    } = useForm();
-
-    const { control, handleSubmit } = useForm<PlayerFormModel>({
+    } = useForm<PlayerFormModel>({
         defaultValues: {
             name: '',
             lastname: '',
@@ -21,17 +21,25 @@ export default function AddPlayer({ players }: { players: Player[] }) {
             status: '',
             tg: '',
             invited_by: '',
+            useSkill: false,
         },
     });
+
+    const initialState: PlayerFormState = { message: null, errors: {} };
+    const [state, formAction, isPending] = useActionState(
+        createPlayer,
+        initialState
+    );
 
     return (
         <PlayerForm
             title="Добавление игрока"
             players={players}
             control={control}
-            register={register}
+            isPending={isPending}
+            errors={state.errors}
             watch={watch}
-            setValue={setValue}
+            formAction={formAction}
         />
     );
 }

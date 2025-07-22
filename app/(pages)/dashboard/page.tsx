@@ -8,7 +8,7 @@ import {
     LatestInvoicesSkeleton,
     RevenueChartSkeleton,
 } from '@/app/ui/skeletons';
-import GameList from '../ui/dashboard/game-list';
+import GameList from '../../ui/dashboard/game-list';
 
 export default async function Page() {
     return (
